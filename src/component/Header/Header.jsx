@@ -6,10 +6,12 @@ import LowerHeader from "./LowerHeader";
 import { BsSearch } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { DataContext, DataProvider } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/FireBase";
 
 function Header() {
   // const [{ basket }, dispatch] = useContext({DataProvider});
-  const [{ basket }, dispatch] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
+  // console.log(user);
   const totalItem = basket?.reduce((amount, item) => {
     return amount + item.amount;
   }, 0);
@@ -42,7 +44,7 @@ function Header() {
               <option value="">All</option>
             </select>
             <input type="text" name="" id="" placeholder="Search product" />
-            <BsSearch />
+            <BsSearch className="classes.icon-svg" size={40} />
           </div>
 
           <div className={classes.order_container}>
@@ -57,10 +59,23 @@ function Header() {
               </select>
             </Link>
             {/* three component */}
-            <Link to="/auth">
+            {/* Link to={!user && "/auth"}>user is not exist lets go auth page but user exist lets go readr ={user ? (
+                  <>
+                    <p> Hello {user?.email?.split("@")[0]} </p>
+                    <span>signOut</span> if   */}
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Hello,Sign In </p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p> Hello {user?.email?.split("@")[0]} </p>
+                    <span onClick={() => auth.signOut()}>signOut</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello signin</p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
               </div>
             </Link>
             {/* orders */}

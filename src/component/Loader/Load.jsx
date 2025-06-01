@@ -1,5 +1,4 @@
 import React from "react";
-import { BsDisplay } from "react-icons/bs";
 import { SyncLoader } from "react-spinners";
 
 function Load() {

@@ -60,12 +60,13 @@
   border: 1px solid white;
   width: 100%;
   margin-right: -2px;
-}
-.search svg {
-  padding: 10px;
-  background: #fabd69;
   color: #1a1a1a;
 }
+.search svg {
+  padding:10px;
+  background-color: #fabd69;
+}
+
 .search svg:hover {
   background-color: #d49644;
 }
